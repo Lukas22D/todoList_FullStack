@@ -1,12 +1,14 @@
-const validateBody = async (req, res, next) => {
-    const { body } = req.body;
-    if (!body || body === '') {
-        return res.status(400).json({ message: 'O campo "title" é obrigatório' })
-    };
-    
-    if ( body ===  undefined) {
-        return res.status(400).json({ message: 'O campo "title" deve ser uma string' })
+const validateBody = async (request, response, next) => {
+    const { body } = request;
+
+    if (body.title === undefined) {
+      return response.status(400).json({ message: 'The field "title" is required' });
     }
+  
+    if (body.title === '') {
+      return response.status(400).json({ message: 'title cannot be empty' });
+    }
+  
     next();
 };
 
